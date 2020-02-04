@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>POC Directory</title>
+        <meta name="description" content="POC Directory">
+        <script src="https://aframe.io/releases/0.9.0/aframe.min.js"></script> <!-- The controllers only have loaded in 0.8.2, not the latest 0.9.0 -->
+        <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script> <!-- Loads predetermined forest background -->
+  </head>
+   <body>
+      <a-scene>
+
+            <a-assets>
+              <!-- Texture for the portal -->
+              <img id="portal-preview" src="../../assets/dark-honeycomb.png"></img>
+            </a-assets>
+
+            <!-- Environment -->
+          <a-entity id="sceneSetting" environment="preset: starry; shadow: true"></a-entity>
+
+          <script>
+            AFRAME.registerComponent('navigate-on-click', {
+              schema: {
+                url: {default: ''}
+              },
+
+              init: function () {
+                var data = this.data;
+                var el = this.el;
+
+                el.addEventListener('click', function () {
+                  window.location.href = data.url;
+                });
+              }
+            });
+          </script>
+
+          <!-- Player -->
+            <a-camera id="Camera" look-controls="pointerLockEnabled: true" position="0 1.6 0">
+              <a-cursor id="Cursor" material="color: white"></a-cursor>
+            </a-camera>
+
+        <a-entity text="font: mozillavr; size: 16; align: center; value: Welcome to the directory for my three proof of concept scenes for A-frame.
+                  \n\nClick with your mouse on a portal to enter a scene. If on Mobile, fuse interaction should be active.
+                  \n\nPlease understand that these scenes were first developed for a headset and are being coverted to mouse/mobile controls, bugs are expected :)"
+                  position="0 1.6 -1">
+        </a-entity>
+
+          <!-- Clickable Links -->
+
+          <a-link id="Block_Link" href="blockBuilder.html" title="Block Builder"
+              static-body="shape: sphere; sphereRadius: 0.25"
+              image="#portal-preview"
+              on="click"
+              highlightedColor="#24CAFF"
+              position= "0 1.6 2" rotation="0 0 0" scale="0.25 0.25 0.25">
+          </a-link>
+
+          <a-link id="Scene_Link" href="sceneChanger.html" title="Scene Changer"
+              static-body="shape: sphere; sphereRadius: 0.25"
+              image="#portal-preview"
+              on="click"
+              highlightedColor="#24CAFF"
+              position= "-1 1.6 2" rotation="0 0 0" scale="0.25 0.25 0.25">
+          </a-link>
+
+          <a-link id="Throw_Link" href="handThrow.html" title="Hand Throw"
+              static-body="shape: sphere; sphereRadius: 0.25"
+              image="#portal-preview"
+              on="click"
+              highlightedColor="#24CAFF"
+              position= "1 1.6 2" rotation="0 0 0" scale="0.25 0.25 0.25">
+          </a-link>
+
+      </a-scene>
+
+
+
+   </body>
+</html>
